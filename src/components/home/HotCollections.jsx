@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import OwlCarousel from "react-owl-carousel";
+import axios from "axios";
 import { Link } from "react-router-dom";
-
 
 const HotCollections = () => {
   const [hotCollectionsData, setHotCollectionsData] = useState(null);
@@ -11,9 +11,11 @@ const HotCollections = () => {
   useEffect(() => {
     async function fetchHotCollections() {
       try {
-        const response = await axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections');
-        setHotCollectionsData(response.data)
-        console.log(hotCollectionsData)
+        const response = await axios.get(
+          "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
+        );
+        setHotCollectionsData(response.data);
+        console.log(hotCollectionsData);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -22,11 +24,10 @@ const HotCollections = () => {
     }
     fetchHotCollections();
   }, []);
-
+  
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -37,17 +38,39 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
+          <OwlCarousel className="owl-theme" items={4} loop margin={20} nav dotsEach responsive={{
+        0: {
+          items: 1,
+        },
+        768: {
+          items: 2,
+        },
+        1000: {
+          items: 3,
+        },
+        1400: {
+          items: 4,
+        },
+      }} >
           {hotCollectionsData.map((item) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
               <div className="nft_coll">
                 <div className="nft_wrap">
                   <Link to="/item-details">
-                    <img src={item.nftImage} className="lazy img-fluid" alt="" />
+                    <img
+                      src={item.nftImage}
+                      className="lazy img-fluid"
+                      alt=""
+                    />
                   </Link>
                 </div>
                 <div className="nft_coll_pp">
                   <Link to="/author">
-                    <img className="lazy pp-coll" src={item.AuthorImage} alt="" />
+                    <img
+                      className="lazy pp-coll"
+                      src={item.authorImage}
+                      alt=""
+                    />
                   </Link>
                   <i className="fa fa-check"></i>
                 </div>
@@ -60,6 +83,7 @@ const HotCollections = () => {
               </div>
             </div>
           ))}
+          </OwlCarousel>
         </div>
       </div>
     </section>
