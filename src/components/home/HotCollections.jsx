@@ -16,10 +16,9 @@ const HotCollections = () => {
           "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
         );
         setHotCollectionsData(response.data);
+        setLoading(false);
       } catch (error) {
         setError(error.message);
-      } finally {
-        setLoading(false);
       }
     }
     fetchHotCollections();
