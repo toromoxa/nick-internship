@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import HotSkeleton from "../UI/HotSkeleton";
 
 const HotCollections = () => {
   const [hotCollectionsData, setHotCollectionsData] = useState(null);
@@ -38,7 +39,20 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-theme" items={4} loop margin={20} nav dotsEach responsive={{
+          {loading ? (<OwlCarousel className="owl-theme" items={4} loop margin={20} nav dotsEach responsive={{
+        0: {
+          items: 1,
+        },
+        768: {
+          items: 2,
+        },
+        1000: {
+          items: 3,
+        },
+        1400: {
+          items: 4,
+        },
+      }} ><HotSkeleton /></OwlCarousel>) : (<OwlCarousel className="owl-theme" items={4} loop margin={20} nav dotsEach responsive={{
         0: {
           items: 1,
         },
@@ -83,7 +97,8 @@ const HotCollections = () => {
               </div>
             </div>
           ))}
-          </OwlCarousel>
+          </OwlCarousel>)}
+          
         </div>
       </div>
     </section>

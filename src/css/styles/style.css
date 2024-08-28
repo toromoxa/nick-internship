@@ -13224,6 +13224,9 @@ a.read_more i {
 
 .nft_coll_info {
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .nft_coll h4 {
@@ -16657,6 +16660,10 @@ img {
   position: relative;
   overflow: hidden;
   background-color: #dddbdd;
+}
+
+.skeleton-title {
+  padding-bottom: 4px;
 }
 
 .skeleton-box::after {
