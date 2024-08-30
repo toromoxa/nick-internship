@@ -41,7 +41,7 @@ const HotCollections = () => {
               className="owl-theme"
               items={4}
               loop
-              margin={20}
+              margin={30}
               nav
               dotsEach
               responsive={{
@@ -66,7 +66,7 @@ const HotCollections = () => {
               className="owl-theme"
               items={4}
               loop
-              margin={20}
+              margin={1}
               nav
               dotsEach
               responsive={{
