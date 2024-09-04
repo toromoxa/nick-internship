@@ -13633,6 +13633,7 @@ a.read_more i {
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
   background: #ffffff;
+  width: 300px;
 }
 
 .nft__item.style-2,
