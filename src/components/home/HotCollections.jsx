@@ -20,8 +20,8 @@ const HotCollections = () => {
       } catch (error) {
         setError(error.message);
       } 
-      setLoading(false);
     }
+    setLoading(false);
     fetchHotCollections();
   }, []);
 
