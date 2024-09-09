@@ -8,7 +8,6 @@ const NewItems = () => {
   const [newItemData, setNewItemData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
 
   useEffect(() => {
     async function getNewItems() {
@@ -37,36 +36,59 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel
-            className="owl-theme"
-            loop
-            margin={1}
-            nav
-            items={4}
-            responsive={{
-              0: {
-                items: 1,
-              },
-              775: {
-                items: 2,
-              },
-              1000: {
-                items: 3,
-              },
-              1400: {
-                items: 4,
-              },
-            }}
-          >
-            {loading ? (
+          {loading && (
+            <OwlCarousel
+              className="owl-theme"
+              loop
+              margin={1}
+              nav
+              items={4}
+              responsive={{
+                0: {
+                  items: 1,
+                },
+                775: {
+                  items: 2,
+                },
+                1000: {
+                  items: 3,
+                },
+                1400: {
+                  items: 4,
+                },
+              }}
+            >
               <>
                 <NewItemSkeleton />
                 <NewItemSkeleton />
                 <NewItemSkeleton />
                 <NewItemSkeleton />
               </>
-            ) : (
-              newItemData.map((item) => (
+            </OwlCarousel>
+          )}
+          {!loading && (
+            <OwlCarousel
+              className="owl-theme"
+              loop
+              margin={1}
+              nav
+              items={4}
+              responsive={{
+                0: {
+                  items: 1,
+                },
+                775: {
+                  items: 2,
+                },
+                1000: {
+                  items: 3,
+                },
+                1400: {
+                  items: 4,
+                },
+              }}
+            >
+              {newItemData.map((item) => (
                 <div
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={item.id}
@@ -74,7 +96,7 @@ const NewItems = () => {
                   <div className="nft__item">
                     <div className="author_list_pp">
                       <Link
-                        to="/author"
+                        to={`/author/${item.authorId}`}
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"
                         title="Creator: Monica Lucas"
@@ -84,7 +106,7 @@ const NewItems = () => {
                       </Link>
                     </div>
                     <CountDownTimer expirationDate={item.expiryDate} />
-                     <div className="nft__item_wrap">
+                    <div className="nft__item_wrap">
                       <div className="nft__item_extra">
                         <div className="nft__item_buttons">
                           <button>Buy Now</button>
@@ -123,9 +145,9 @@ const NewItems = () => {
                     </div>
                   </div>
                 </div>
-              ))
-            )};
-          </OwlCarousel>
+              ))}
+            </OwlCarousel>
+          )}
         </div>
       </div>
     </section>
@@ -137,17 +159,15 @@ const CountDownTimer = ({ expirationDate }) => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setTimeLeft(calculateTimeLeft(expirationDate))
-    }, 1000)
+      setTimeLeft(calculateTimeLeft(expirationDate));
+    }, 1000);
 
     return () => clearInterval(timer);
-
   }, [expirationDate]);
 
   if (timeLeft.total <= 0) {
     return <></>;
   }
-
 
   return (
     <div className="de_countdown">{`${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}</div>
@@ -156,7 +176,7 @@ const CountDownTimer = ({ expirationDate }) => {
 
 const calculateTimeLeft = (expirationDate) => {
   const difference = expirationDate - new Date().getTime();
-  
+
   let timeLeft = {
     total: difference,
     days: Math.floor(difference / (1000 * 60 * 60 * 24)),

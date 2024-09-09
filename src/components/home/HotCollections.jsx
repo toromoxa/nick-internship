@@ -36,7 +36,7 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {loading ? (
+          {loading && (
             <OwlCarousel
               className="owl-theme"
               items={4}
@@ -61,7 +61,8 @@ const HotCollections = () => {
             >
               <HotSkeleton />
             </OwlCarousel>
-          ) : (
+          )} 
+          {!loading && (
             <OwlCarousel
               className="owl-theme"
               items={4}
@@ -100,7 +101,7 @@ const HotCollections = () => {
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${item.authorId}`}>
                         <img
                           className="lazy pp-coll"
                           src={item.authorImage}
