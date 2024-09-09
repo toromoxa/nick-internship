@@ -11,6 +11,8 @@ const Author = () => {
   const [authorNftCollection, setAuthorNftCollection] = useState([]);
   const [error, setError] = useState(null);
   const [authorBanner, setAuthorBanner] = useState();
+  const [followers, setFollowers] = useState(0);
+  const [isFollowing, setIsFollowing] = useState(false);
 
   useEffect(() => {
     async function fetchAuthorData() {
@@ -27,6 +29,21 @@ const Author = () => {
     }
     fetchAuthorData();
   }, []);
+
+  useEffect(() => {
+    if (authorData && authorData.followers) {
+      setFollowers(authorData.followers);
+    }
+  }, [authorData]);
+
+  const handleFollow = () => {
+    if (isFollowing) {
+      setFollowers(followers - 1);
+    } else {
+      setFollowers(followers + 1);
+    }
+    setIsFollowing(!isFollowing);
+  };
 
   return (
     <div id="wrapper">
@@ -72,10 +89,10 @@ const Author = () => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">
-                        {authorData.followers} followers
+                        {followers} followers
                       </div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <Link to="#" className="btn-main" onClick={handleFollow}>
+                      {isFollowing ? 'Unfollow' : 'Follow'}
                       </Link>
                     </div>
                   </div>
@@ -84,7 +101,8 @@ const Author = () => {
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+                  <AuthorItems 
+                  authorData={authorData} />
                 </div>
               </div>
             </div>
