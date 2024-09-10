@@ -57,7 +57,7 @@ const ExploreItems = () => {
 
   return (
     <>
-      <div>
+      <div data-aos="fade-in">
         <select
           id="filter-items"
           value={sortOption}
@@ -78,7 +78,7 @@ const ExploreItems = () => {
         </>
       ) : (
         exploreData.slice(0, visibleCards).map((item) => (
-          <div
+          <div 
             key={item.id}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}

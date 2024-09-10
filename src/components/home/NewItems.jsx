@@ -89,7 +89,7 @@ const NewItems = () => {
               }}
             >
               {newItemData.map((item) => (
-                <div
+                <div data-aos="fade-in" data-aos-delay="100"
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={item.id}
                 >
