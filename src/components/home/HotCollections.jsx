@@ -67,17 +67,16 @@ const HotCollections = () => {
               className="owl-theme"
               items={4}
               loop
-              margin={1}
+              margin={20}
               nav
-              dotsEach
               responsive={{
                 0: {
                   items: 1,
                 },
-                768: {
+                575: {
                   items: 2,
                 },
-                1000: {
+                768: {
                   items: 3,
                 },
                 1400: {
@@ -87,7 +86,6 @@ const HotCollections = () => {
             >
               {hotCollectionsData.map((item) => (
                 <div data-aos="fade-in" data-aos-delay="100"
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={item.id}
                 >
                   <div className="nft_coll">

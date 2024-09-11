@@ -70,17 +70,17 @@ const NewItems = () => {
             <OwlCarousel
               className="owl-theme"
               loop
-              margin={1}
+              margin={20}
               nav
               items={4}
               responsive={{
                 0: {
                   items: 1,
                 },
-                775: {
+                575: {
                   items: 2,
                 },
-                1000: {
+                768: {
                   items: 3,
                 },
                 1400: {
@@ -90,7 +90,6 @@ const NewItems = () => {
             >
               {newItemData.map((item) => (
                 <div data-aos="fade-in" data-aos-delay="100"
-                  className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={item.id}
                 >
                   <div className="nft__item">
