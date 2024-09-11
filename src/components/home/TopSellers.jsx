@@ -34,7 +34,7 @@ const TopSellers = () => {
             </div>
           </div>
           <div className="col-md-12">
-            <ol className="author_list">
+            <ol data-aos="fade-in" className="author_list">
               {loading ? (
                 Array(12)
                   .fill()

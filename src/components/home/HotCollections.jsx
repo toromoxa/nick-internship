@@ -32,7 +32,7 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
+              <h2 data-aos="fade-in">Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
@@ -86,7 +86,7 @@ const HotCollections = () => {
               }}
             >
               {hotCollectionsData.map((item) => (
-                <div
+                <div data-aos="fade-in" data-aos-delay="100"
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={item.id}
                 >
