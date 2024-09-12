@@ -8,7 +8,7 @@ const ExploreItems = () => {
   const [exploreData, setExploreData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [visibleCards, setVisibleCards] = useState(4);
+  const [visibleCards, setVisibleCards] = useState(8);
   const [sortOption, setSortOption] = useState("default");
 
   async function fetchExploreData(sortOption) {
@@ -50,7 +50,7 @@ const ExploreItems = () => {
 
   const handleSortChange = (event) => {
     setSortOption(event.target.value);
-    setVisibleCards(4);
+    setVisibleCards(8);
   };
 
   if (error) return <p>Error: {error}</p>;
@@ -71,14 +71,15 @@ const ExploreItems = () => {
       </div>
       {loading ? (
         <>
-          <ExploreSkeleton />
-          <ExploreSkeleton />
-          <ExploreSkeleton />
-          <ExploreSkeleton />
+          {Array(8)
+            .fill(null)
+            .map((_, index) => (
+              <ExploreSkeleton key={index} />
+            ))}
         </>
       ) : (
         exploreData.slice(0, visibleCards).map((item) => (
-          <div 
+          <div
             key={item.id}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
@@ -135,8 +136,7 @@ const ExploreItems = () => {
           </div>
         ))
       )}
-      {}
-      <div className="col-md-12 text-center">
+      {visibleCards < 16 && visibleCards < exploreData.length && (<div className="col-md-12 text-center">
         <Link
           to=""
           id="loadmore"
@@ -145,7 +145,8 @@ const ExploreItems = () => {
         >
           Load more
         </Link>
-      </div>
+      </div>)}
+      
     </>
   );
 };
