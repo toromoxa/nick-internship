@@ -13,7 +13,7 @@ const CountdownTimer = ({ expirationDate }) => {
     }, [expirationDate]);
 
     if (timeLeft.total <= 0) {
-        return <></>;
+        return <>Expired</>;
     }
     
     
